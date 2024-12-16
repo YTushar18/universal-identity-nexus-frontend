@@ -16,8 +16,29 @@ const Register = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let payload;
+
+    if (role === 'user') {
+      payload = {
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        password: formData.password,
+        type: 'user',
+      };
+    } else {
+      payload = {
+        org_name: formData.organizationName,
+        admin_name: formData.adminName,
+        email: formData.email,
+        password: formData.password,
+        client_type: formData.organizationType,
+        type: 'client',
+      };
+    }
+
     try {
-      const response = await axios.post('http://127.0.0.1:5001/api/auth/register', formData);
+      const response = await axios.post('http://127.0.0.1:5001/api/auth/register', payload);
       setMessage(response.data.message);
     } catch (error) {
       setMessage('Registration failed. Please try again.');
