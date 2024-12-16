@@ -2,6 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import Register from './pages/Register';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import PrivateRoute from './components/PrivateRoute';
+
+
 
 function App() {
   return (
@@ -9,8 +14,10 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/register" element={<Register />} />
-        {/* Placeholder for Login */}
-        <Route path="/login" element={<div>Login Page</div>} />
+        <Route path="/login" element={<Login />} />
+        {/* Protected Route */}
+        <Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>} />
+        
       </Routes>
     </Router>
   );

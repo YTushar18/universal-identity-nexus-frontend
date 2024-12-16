@@ -49,10 +49,10 @@ const LandingPage = () => {
       {/* Content */}
       <Fade in timeout={1500}>
         <Box sx={{ position: 'relative', zIndex: 2, animation: 'fadeIn 2s' }}>
-          <Typography variant="h2" gutterBottom sx={{ fontWeight: 'bold', letterSpacing: '2px' }}>
+          <Typography variant="h2" gutterBottom sx={{ fontWeight: 'bold', letterSpacing: '2px', textShadow: '5px 5px 15px rgba(0, 0, 0, 0.8)' }}>
             Welcome to Universal Identity Nexus
           </Typography>
-          <Typography variant="h6" sx={{ marginBottom: 4 }}>
+          <Typography variant="h6" sx={{ marginBottom: 4, textShadow: '1px 1px 5px rgba(0, 0, 0, 0.7)' }}>
             A secure and centralized platform to manage your personal identity.
           </Typography>
 
@@ -72,6 +72,7 @@ const LandingPage = () => {
                   backgroundColor: '#1565c0',
                   transform: 'scale(1.05)',
                   transition: 'transform 0.3s ease-in-out',
+                  textShadow: '5px 5px 15px rgba(0, 0, 0, 0.8)'
                 },
               }}
             >
@@ -88,11 +89,14 @@ const LandingPage = () => {
                 fontSize: '1rem',
                 fontWeight: 'bold',
                 borderRadius: 8,
+                textShadow: 'px 5px 15px rgba(0, 0, 0, 0.8)',
                 animation: `${bounce} 2s infinite 1s`,
+                
                 '&:hover': {
                   backgroundColor: '#d32f2f',
                   transform: 'scale(1.05)',
                   transition: 'transform 0.3s ease-in-out',
+                  textShadow: '5px 5px 15px rgba(0, 0, 0, 0.8)'
                 },
               }}
             >
