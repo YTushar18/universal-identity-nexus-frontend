@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { TextField, Button, Box, Typography, Alert } from '@mui/material';
-import PageLayout from '../components/PageLayout';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { TextField, Button, Box, Typography, Alert } from "@mui/material";
+import axiosInstance from "../services/axiosInstance";
+import { useNavigate } from "react-router-dom";
+import PageLayout from "../components/PageLayout";
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
-  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -18,20 +18,23 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setLoading(true);
 
     try {
-      const response = await axios.post('http://127.0.0.1:5001/api/auth/login', formData);
-      // const response = await axios.post('/api/auth/login', formData);
-      const { access_token, refresh_token } = response.data;
+      const response = await axiosInstance.post(
+        "http://127.0.0.1:5001/api/auth/login",
+        formData
+      );
+      const { access_token, refresh_token, user_id } = response.data;
 
-      localStorage.setItem('access_token', access_token);
-      localStorage.setItem('refresh_token', refresh_token);
+      localStorage.setItem("access_token", access_token);
+      localStorage.setItem("refresh_token", refresh_token);
+      localStorage.setItem("user_id", user_id);
 
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (err) {
-      setError('Invalid credentials. Please try again.');
+      setError("Invalid credentials. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -43,12 +46,16 @@ const Login = () => {
         Login
       </Typography>
 
-      {error && <Alert severity="error" sx={{ marginBottom: 2 }}>{error}</Alert>}
+      {error && (
+        <Alert severity="error" sx={{ marginBottom: 2 }}>
+          {error}
+        </Alert>
+      )}
 
       <form onSubmit={handleSubmit}>
         <TextField
-          name="email"
           label="Email Address"
+          name="email"
           type="email"
           fullWidth
           margin="normal"
@@ -56,8 +63,8 @@ const Login = () => {
           required
         />
         <TextField
-          name="password"
           label="Password"
+          name="password"
           type="password"
           fullWidth
           margin="normal"
@@ -72,12 +79,13 @@ const Login = () => {
             sx={{
               paddingX: 5,
               paddingY: 1.5,
-              fontSize: '1rem',
-              fontWeight: 'bold',
+              fontSize: "1rem",
+              fontWeight: "bold",
               borderRadius: 8,
             }}
+            disabled={loading}
           >
-            Submit
+            {loading ? "Logging In..." : "Login"}
           </Button>
         </Box>
       </form>
