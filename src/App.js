@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import LandingPage from './pages/LandingPage';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import "./index.css";
 import Dashboard from './pages/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
 
