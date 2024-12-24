@@ -1,6 +1,7 @@
 import axiosInstance from "./axiosInstance";
 
-const BASE_URL = "http://127.0.0.1:5001"; // Replace with your API URL
+
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const fetchUserProfiles = async () => {
   const accessToken = localStorage.getItem("access_token");

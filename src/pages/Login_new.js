@@ -23,7 +23,7 @@ const Login = () => {
 
     try {
       const response = await axiosInstance.post(
-        "http://127.0.0.1:5001/api/auth/login",
+        "/auth/login",
         formData
       );
       const { access_token, refresh_token, user_id } = response.data;
